@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/events_background"
         android:padding="@dimen/events_padding">
 
         <!--Event info Card-->
@@ -50,6 +51,26 @@
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/event_date_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            card_view:cardCornerRadius="4dp"
+            card_view:contentPadding="4sp"
+            card_view:cardBackgroundColor="@android:color/holo_red_dark">
+
+            <TextView
+                android:id="@+id/date_event_detail"
+                android:textSize="24sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+        </android.support.v7.widget.CardView>
+
         <!--Location Card-->
         <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:id="@+id/google_maps_card"
@@ -57,6 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
+            card_view:contentPadding="4sp"
             card_view:cardCornerRadius="4dp">
 
             <LinearLayout
@@ -79,8 +101,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     map:mapType="normal"
+                    map:uiScrollGestures="false"
                     tools:ignore="MissingPrefix" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
+
     </LinearLayout>
 </ScrollView>

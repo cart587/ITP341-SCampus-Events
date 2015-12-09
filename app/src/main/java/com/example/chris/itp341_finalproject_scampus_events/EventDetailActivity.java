@@ -1,5 +1,6 @@
 package com.example.chris.itp341_finalproject_scampus_events;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender;
@@ -7,8 +8,8 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.ResultReceiver;
-import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,16 +47,25 @@ public class EventDetailActivity extends Activity implements GoogleApiClient.Con
 
     //GUI VARIABLES
     TextView textViewAddress;
+    TextView textViewDate;
 
     //OTHER VARIABLE DECLARATIONS
+    public static final String EVENT_EXTRA = "com.example.chris.itp341_finalproject_scampus_events.event_extra";
     private final String TAG = "EventDetailActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.event_detail_view);
 
+        setUpActionBar();
         findAllViewsById();
         buildGoogleApiClient();
+    }
+
+    private void setUpActionBar(){
+        ActionBar actionBar= getActionBar();
+        actionBar.setIcon(R.drawable.ic_menu_black_24dp);
     }
 
     private void findAllViewsById(){
@@ -63,11 +73,15 @@ public class EventDetailActivity extends Activity implements GoogleApiClient.Con
         mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
 
         textViewAddress = (TextView) findViewById(R.id.address_line_event_detail);
+        textViewDate = (TextView) findViewById(R.id.date_event_detail);
     }
 
     private void updateGUI(){
-        textViewAddress.setVisibility(TextView.VISIBLE);
+        textViewAddress.setVisibility(View.VISIBLE);
         textViewAddress.setText(mAddressOutput);
+
+        textViewDate.setVisibility(View.VISIBLE);
+        textViewDate.setText("Today at 7:00PM");
     }
 
     protected void startIntentService() {
@@ -180,7 +194,6 @@ public class EventDetailActivity extends Activity implements GoogleApiClient.Con
             // Show a toast message if an address was found.
             if (resultCode == FetchAddressIntentService.SUCCESS_RESULT) {
                 loadMapLocation();
-                Toast.makeText(getApplicationContext(), R.string.address_found, Toast.LENGTH_LONG).show();
             }
 
         }

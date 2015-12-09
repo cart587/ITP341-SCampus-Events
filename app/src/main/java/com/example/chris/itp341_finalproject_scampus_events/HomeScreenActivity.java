@@ -38,6 +38,7 @@ public class HomeScreenActivity extends Activity{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intentEventDetail = new Intent(getApplicationContext(),EventDetailActivity.class);
+                intentEventDetail.putExtra(EventDetailActivity.EVENT_EXTRA,position);
                 startActivity(intentEventDetail);
             }
         });
