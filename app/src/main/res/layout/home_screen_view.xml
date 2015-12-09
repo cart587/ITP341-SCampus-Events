@@ -1,16 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:background="@color/events_background"
-    android:padding="@dimen/events_padding"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ListView
-        android:id="@+id/listview_events"
+    <!--Main Window-->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="@dimen/listview_seperataion">
+        android:layout_height="match_parent"
+        android:background="@color/events_background"
+        android:orientation="vertical"
+        android:padding="@dimen/events_padding">
 
-    </ListView>
-</LinearLayout>
+        <ListView
+            android:id="@+id/listview_events"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="@dimen/listview_seperataion">
+
+        </ListView>
+    </LinearLayout>
+
+    <!--Navigation Drawer-->
+    <ListView
+        android:id="@+id/left_drawer"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:choiceMode="singleChoice"
+        android:background="#ffeeeeee"
+        android:dividerHeight="0dp" />
+
+</android.support.v4.widget.DrawerLayout>
+
+    <!--android:divider="@android:color/transparent"-->

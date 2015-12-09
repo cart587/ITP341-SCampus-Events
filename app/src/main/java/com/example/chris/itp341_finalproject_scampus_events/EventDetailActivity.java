@@ -58,14 +58,8 @@ public class EventDetailActivity extends Activity implements GoogleApiClient.Con
         super.onCreate(savedInstanceState);
         setContentView(R.layout.event_detail_view);
 
-        setUpActionBar();
         findAllViewsById();
         buildGoogleApiClient();
-    }
-
-    private void setUpActionBar(){
-        ActionBar actionBar= getActionBar();
-        actionBar.setIcon(R.drawable.ic_menu_black_24dp);
     }
 
     private void findAllViewsById(){
