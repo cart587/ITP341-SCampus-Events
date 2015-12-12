@@ -14,6 +14,10 @@ import android.widget.ListView;
 
 import com.example.chris.itp341_finalproject_scampus_events.model.CampusEventSingleton;
 import com.example.chris.itp341_finalproject_scampus_events.model.EventArrayAdapter;
+import com.example.chris.itp341_finalproject_scampus_events.slider_model.SliderArrayAdapter;
+import com.example.chris.itp341_finalproject_scampus_events.slider_model.SliderCategory;
+
+import java.util.ArrayList;
 
 /**
  * Created by Chris on 12/8/2015.
@@ -25,7 +29,7 @@ public class HomeScreenActivity extends AppCompatActivity {
 
     //SLIDING DRAWER VARIABLES
     private ListView mDrawerList;
-    private ArrayAdapter<String> mAdapter;
+    private SliderArrayAdapter mAdapter;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private String mActivityTitle;
@@ -71,8 +75,13 @@ public class HomeScreenActivity extends AppCompatActivity {
     }
 
     private void addDrawerItems() {
-        String[] osArray = { "Android", "iOS", "Windows", "OS X", "Linux" };
-        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
+
+        SliderCategory category = new SliderCategory("Create Event",getDrawable(R.drawable.ic_add_black_18dp));
+        ArrayList<SliderCategory> arrCategories = new ArrayList<>();
+
+        arrCategories.add(category);
+
+        mAdapter = new SliderArrayAdapter(this, arrCategories);
         mDrawerList.setAdapter(mAdapter);
     }
 

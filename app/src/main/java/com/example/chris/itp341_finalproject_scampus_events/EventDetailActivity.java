@@ -8,6 +8,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.ResultReceiver;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 /**
  * Created by Chris on 12/8/2015.
  */
-public class EventDetailActivity extends Activity implements GoogleApiClient.ConnectionCallbacks,
+public class EventDetailActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,OnMapReadyCallback {
     //VARIABLES FOR CURRENT LOCATION
     GoogleApiClient mGoogleApiClient;

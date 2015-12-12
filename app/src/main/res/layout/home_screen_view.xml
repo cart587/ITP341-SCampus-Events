@@ -23,14 +23,30 @@
     </LinearLayout>
 
     <!--Navigation Drawer-->
-    <ListView
-        android:id="@+id/left_drawer"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:choiceMode="singleChoice"
-        android:background="#ffeeeeee"
-        android:dividerHeight="0dp" />
+        android:background="#ffeeeeee">
+
+        <TextView
+            android:id="@+id/drawer_name_header"
+            android:text="Welcome User!"
+            android:textColor="@color/white"
+            android:background="@color/cardinal"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:gravity="bottom"/>
+
+        <ListView
+            android:id="@+id/left_drawer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:choiceMode="singleChoice"
+            android:dividerHeight="0dp" />
+    </LinearLayout>
+
 
 </android.support.v4.widget.DrawerLayout>
 
