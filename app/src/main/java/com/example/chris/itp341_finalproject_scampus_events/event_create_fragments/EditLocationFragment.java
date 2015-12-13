@@ -11,6 +11,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.chris.itp341_finalproject_scampus_events.EventCreateActivity;
@@ -36,6 +39,7 @@ public class EditLocationFragment extends Fragment implements GoogleApiClient.Co
     //VARIABLES FOR CURRENT LOCATION
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
+    Location eventLocation;
     LatLng mLatLng;
     boolean mResolvingError = false;
 
@@ -46,6 +50,9 @@ public class EditLocationFragment extends Fragment implements GoogleApiClient.Co
 
     //VARIABLES FOR MAP
     MapFragment mapFragment;
+    EditText editTextAddressQuery;
+    ImageButton imageButtonSearch;
+    String addressQuery = null;
     final int MAP_ZOOM_LEVEL = 16;
 
     EventCreateActivity activity;
@@ -70,13 +77,27 @@ public class EditLocationFragment extends Fragment implements GoogleApiClient.Co
 
     private void findAllViewsById(){
         mapFragment = (MapFragment) activity.getFragmentManager().findFragmentById(R.id.editMap);
+        editTextAddressQuery = (EditText) activity.findViewById(R.id.edit_text_address_search);
+        imageButtonSearch = (ImageButton) activity.findViewById(R.id.btn_search);
+
+        imageButtonSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("String","Attempting to search for address");
+                addressQuery = editTextAddressQuery.getText().toString();
+                mGoogleApiClient.reconnect();
+            }
+        });
     }
 
     @Override
     public void onMapReady(GoogleMap map) {
-        mLatLng = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
+
+        mLatLng = new LatLng(eventLocation.getLatitude(), eventLocation.getLongitude());
+        Log.d("String","Lat: "+mLatLng.latitude+", Lng: "+mLatLng.longitude);
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(mLatLng, MAP_ZOOM_LEVEL);
 
+        map.clear();
         map.addMarker(new MarkerOptions()
                 .position(mLatLng)
                 .title(mAddressOutput));
@@ -98,6 +119,19 @@ public class EditLocationFragment extends Fragment implements GoogleApiClient.Co
             mAddressOutput= resultData.getString(FetchAddressIntentService.RESULT_DATA_KEY);
             // Show a toast message if an address was found.
             if (resultCode == FetchAddressIntentService.SUCCESS_RESULT) {
+
+                Location tempLocation = resultData.getParcelable(FetchAddressIntentService.FIND_LOCATION_DATA_EXTRA);
+
+                if(tempLocation != null) {
+                    Log.d("String","FOund bundled location");
+                    eventLocation = tempLocation;
+                }
+                else {
+                    Log.d("String","Didnt find bundled Location");
+                    eventLocation = mLastLocation;
+                }
+
+                Log.d("String","Final Address: "+ mAddressOutput);
                 loadMapLocation();
             }
 
@@ -106,6 +140,7 @@ public class EditLocationFragment extends Fragment implements GoogleApiClient.Co
 
     private void loadMapLocation(){
         mapFragment.getMapAsync(this);
+
     }
 
     protected void startIntentService() {
@@ -116,6 +151,15 @@ public class EditLocationFragment extends Fragment implements GoogleApiClient.Co
         activity.startService(intent);
     }
 
+    protected void startSearchIntentService(){
+        mResultReceiver = new AddressResultReceiver(new Handler());
+        Intent intent = new Intent(activity, FetchAddressIntentService.class);
+        intent.putExtra(FetchAddressIntentService.RECEIVER, mResultReceiver);
+        intent.putExtra(FetchAddressIntentService.LOCATION_DATA_EXTRA, mLastLocation);
+        intent.putExtra(FetchAddressIntentService.FIND_LOCATION_DATA_EXTRA, addressQuery);
+        activity.startService(intent);
+    }
+
     @Override
     public void onConnected(Bundle connectionHint) {
         Log.d(TAG, "Connected to Google Play services");
@@ -123,11 +167,16 @@ public class EditLocationFragment extends Fragment implements GoogleApiClient.Co
         // The good stuff goes here.
 
         //GET CURRENT LOCATION HERE
-        mLastLocation = com.google.android.gms.location.LocationServices.FusedLocationApi.getLastLocation(
-                mGoogleApiClient);
-        if (mLastLocation != null) {
-            startIntentService();
+        if(addressQuery == null || addressQuery.equals("")){
+            mLastLocation = com.google.android.gms.location.LocationServices.FusedLocationApi.getLastLocation(
+                    mGoogleApiClient);
+            if (mLastLocation != null) {
+                startIntentService();
+            }
+        }else {
+            startSearchIntentService();
         }
+
     }
 
     @Override
