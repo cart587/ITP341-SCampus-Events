@@ -33,6 +33,7 @@
                 android:id="@+id/event_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
                 android:text="USC Church Night"
                 android:textColor="@color/white" />
 
@@ -40,6 +41,7 @@
                 android:id="@+id/event_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
                 android:text="1024 W. McClintock Ave, Los Angeles"
                 android:textColor="@color/white" />
 

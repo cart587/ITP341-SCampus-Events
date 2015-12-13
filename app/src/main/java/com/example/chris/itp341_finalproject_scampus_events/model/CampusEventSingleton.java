@@ -19,7 +19,7 @@ public class CampusEventSingleton {
         mEvents = new ArrayList<>();
 
         for(int i = 0; i < 5; i++){
-            mEvents.add(new CampusEvent("USC Church Night","1027 W. 34th St, Los Angeles, CA","9:00pm"));
+            // mEvents.add(new CampusEvent("USC Church Night","1027 W. 34th St, Los Angeles, CA","9:00pm"));
         }
 
     }

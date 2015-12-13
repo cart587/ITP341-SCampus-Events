@@ -2,6 +2,7 @@ package com.example.chris.itp341_finalproject_scampus_events.event_create_fragme
 
 import android.content.Intent;
 import android.content.IntentSender;
+import android.location.Address;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
@@ -45,11 +46,11 @@ public class EditLocationFragment extends Fragment implements GoogleApiClient.Co
 
     //VARIABLES FOR TURNING COOR TO ADDRESS
     private AddressResultReceiver mResultReceiver;
-    ArrayList<String> addressResults;
     String mAddressOutput;
 
     //VARIABLES FOR MAP
     MapFragment mapFragment;
+    Address eventAddress;
     EditText editTextAddressQuery;
     ImageButton imageButtonSearch;
     String addressQuery = null;
@@ -70,9 +71,14 @@ public class EditLocationFragment extends Fragment implements GoogleApiClient.Co
         super.onActivityCreated(savedInstanceState);
 
         activity = (EventCreateActivity) getActivity();
+        activity.editLocationFragment = this;
 
         findAllViewsById();
         buildGoogleApiClient();
+    }
+
+    public Address getEventAddress() {
+        return eventAddress;
     }
 
     private void findAllViewsById(){
@@ -120,6 +126,7 @@ public class EditLocationFragment extends Fragment implements GoogleApiClient.Co
             // Show a toast message if an address was found.
             if (resultCode == FetchAddressIntentService.SUCCESS_RESULT) {
 
+                eventAddress = resultData.getParcelable(FetchAddressIntentService.EVENT_ADDRESS);
                 Location tempLocation = resultData.getParcelable(FetchAddressIntentService.FIND_LOCATION_DATA_EXTRA);
 
                 if(tempLocation != null) {

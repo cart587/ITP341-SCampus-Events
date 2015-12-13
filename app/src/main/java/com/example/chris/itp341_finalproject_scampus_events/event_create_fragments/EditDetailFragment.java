@@ -50,10 +50,18 @@ public class EditDetailFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         eventCreateActivity = (EventCreateActivity) getActivity();
-
+        eventCreateActivity.editDetailFragment = this;
         findAllViews();
         if(savedInstanceState == null)
             dateAndTimePickerSetUp();
+    }
+
+    public String getTitle() {
+        return editTextEventTitle.getText().toString();
+    }
+
+    public String getDescription() {
+        return editTextEventDescription.getText().toString();
     }
 
     private void dateAndTimePickerSetUp(){

@@ -13,10 +13,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.chris.itp341_finalproject_scampus_events.model.CampusEvent;
 import com.example.chris.itp341_finalproject_scampus_events.model.CampusEventSingleton;
 import com.example.chris.itp341_finalproject_scampus_events.model.EventArrayAdapter;
 import com.example.chris.itp341_finalproject_scampus_events.slider_model.SliderArrayAdapter;
 import com.example.chris.itp341_finalproject_scampus_events.slider_model.SliderCategory;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 
@@ -34,15 +36,21 @@ public class HomeScreenActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private String mActivityTitle;
-;
+
+    //DATABASE VARIABLES
+    ParseUser user;
+
     //OTHER VARIABLES
     private static final int EVENT_CREATE_ACTIVITY = 0;
+    public static final String ARRAY_ADAPTER_KEY = "ARRAY_ADAPTER_KEY";
     public static final String TAG = "HomeScreenActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen_view);
+
+        user = ParseUser.getCurrentUser();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -51,6 +59,16 @@ public class HomeScreenActivity extends AppCompatActivity {
         setListenersAndAdapters();
         addDrawerItems();
         setupDrawer();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK && requestCode == EVENT_CREATE_ACTIVITY) {
+
+            arrayAdapter.notifyDataSetChanged();
+        }
     }
 
     private void setupDrawer() {
@@ -79,6 +97,7 @@ public class HomeScreenActivity extends AppCompatActivity {
     private void addDrawerItems() {
         ArrayList<SliderCategory> arrCategories = new ArrayList<>();
         SliderCategory category = new SliderCategory("Create Event",getDrawable(R.drawable.ic_add_black_18dp));
+        SliderCategory category2 = new SliderCategory("Log Off", getDrawable(R.drawable.ic_power_settings_new_black_18dp));
 
         arrCategories.add(category);
 
@@ -93,9 +112,14 @@ public class HomeScreenActivity extends AppCompatActivity {
                 switch (textCategory.getText().toString()){
                     case "Create Event":
                         Intent intentCreateEvent = new Intent(getApplicationContext(), EventCreateActivity.class);
-                        startActivityForResult(intentCreateEvent,EVENT_CREATE_ACTIVITY);
+                        startActivityForResult(intentCreateEvent, EVENT_CREATE_ACTIVITY);
+                        break;
+                    case "Log Off":
+                        ParseUser.logOutInBackground();
+                        finish();
                         break;
                     default:
+
                 }
             }
         });

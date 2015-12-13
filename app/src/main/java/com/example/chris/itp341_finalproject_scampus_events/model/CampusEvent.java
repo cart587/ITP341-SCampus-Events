@@ -1,18 +1,55 @@
 package com.example.chris.itp341_finalproject_scampus_events.model;
 
+import android.graphics.Bitmap;
+import android.location.Address;
+
+import java.io.Serializable;
+import java.util.Calendar;
+
 /**
  * Created by Chris on 12/7/2015.
  */
-public class CampusEvent {
+public class CampusEvent implements Serializable {
     private String eventTitle;
-    private String eventLocation;
-    private String eventTime;
     private String eventDescription;
+    private Address eventAddress;
 
-    public CampusEvent(String eventTitle, String eventLocation, String eventTime) {
+    private Calendar startDate = null;
+    private Calendar endDate = null;
+
+    private Bitmap bitmapImage;
+
+    public CampusEvent(String eventTitle, Address eventAddress) {
         this.eventTitle = eventTitle;
-        this.eventLocation = eventLocation;
-        this.eventTime = eventTime;
+        this.eventAddress = eventAddress;
+    }
+
+    public CampusEvent() {
+
+    }
+
+    public Bitmap getBitmapImage() {
+        return bitmapImage;
+    }
+
+    public void setBitmapImage(Bitmap bitmapImage) {
+        this.bitmapImage = bitmapImage;
+    }
+
+    public Calendar getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Calendar startDate) {
+        this.startDate = startDate;
+    }
+
+    public Calendar getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Calendar endDate) {
+        this.endDate = endDate;
     }
 
     public String getEventDescription() {
@@ -31,19 +68,11 @@ public class CampusEvent {
         this.eventTitle = eventTitle;
     }
 
-    public String getEventLocation() {
-        return eventLocation;
+    public Address getEventAddress() {
+        return eventAddress;
     }
 
-    public void setEventLocation(String eventLocation) {
-        this.eventLocation = eventLocation;
-    }
-
-    public String getEventTime() {
-        return eventTime;
-    }
-
-    public void setEventTime(String eventTime) {
-        this.eventTime = eventTime;
+    public void setEventAddress(Address eventAddress) {
+        this.eventAddress = eventAddress;
     }
 }

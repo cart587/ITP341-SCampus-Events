@@ -2,6 +2,8 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="horizontal_margin">66dp</dimen>
+    <dimen name="vertical_margin">16dp</dimen>
     <dimen name="events_padding">8dp</dimen>
     <dimen name="listview_seperataion">8dp</dimen>
     <dimen name="event_title_text_size_in_detail">28sp</dimen>
@@ -12,4 +14,5 @@
     <dimen name="user_header_text_size">20sp</dimen>
     <dimen name="category_padding">12dp</dimen>
     <dimen name="min_width">180dp</dimen>
+    <dimen name="button_height">35dp</dimen>
 </resources>

@@ -32,20 +32,23 @@ public class EventCreatorPageAdapter extends FragmentPagerAdapter {
         switch (position){
 
             case 0:
-                if(editDetailFragment == null){
-                    editDetailFragment = new EditDetailFragment();
-                }
-                return editDetailFragment;
+                return new EditDetailFragment();
+//                if(editDetailFragment == null){
+//                    editDetailFragment = new EditDetailFragment();
+//                }
+//                return editDetailFragment;
             case 1:
-                if(editLocationFragment == null){
-                    editLocationFragment = new EditLocationFragment();
-                }
-                return editLocationFragment;
+                return new EditLocationFragment();
+//                if(editLocationFragment == null){
+//                    editLocationFragment = new EditLocationFragment();
+//                }
+//                return editLocationFragment;
             case 2:
-                if (editEventPhotoFragment == null) {
-                    editEventPhotoFragment = new EditEventPhotoFragment();
-                }
-                return editEventPhotoFragment;
+                return new EditEventPhotoFragment();
+//                if (editEventPhotoFragment == null) {
+//                    editEventPhotoFragment = new EditEventPhotoFragment();
+//                }
+//                return editEventPhotoFragment;
 
         }
         //Should never get here

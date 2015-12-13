@@ -8,6 +8,7 @@
     <style name="SlidingTabAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/ColorPrimary</item>
         <item name="colorPrimaryDark">@color/ColorPrimaryDark</item>
+        <item name="android:colorAccent">@color/gold</item>
         <item name="windowActionBar">false</item>
     </style>
 </resources>

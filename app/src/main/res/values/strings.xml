@@ -1,6 +1,16 @@
 <resources>
     <string name="app_name">SCampus Events</string>
 
+    <string name="parse_app_id">UkYs10S8r2u2Q9LRtpGq7ljWEeJRmG2fESmCtl1k</string>
+    <string name="parse_client_key">mnxxyOuXHiNDHjwhQ3EmwQYPS5MB2Lqac8DpT8nP</string>
+
+    <string name="login">Login</string>
+    <string name="enter_username">Username/Email</string>
+    <string name="username_only">Username</string>
+    <string name="email_only">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_up">Sign Up</string>
+
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
 
@@ -17,6 +27,8 @@
     <string name="current_location">Current Location</string>
     <string name="location_query_hint">Enter an address</string>
     <string name="search">Search</string>
+    <string name="load_from_gallery">Load Photo from Gallery</string>
+    <string name="create_event">Create Event</string>
 
     <string-array name="tab_names">
         <item>Details</item>

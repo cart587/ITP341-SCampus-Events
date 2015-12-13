@@ -32,7 +32,7 @@ public class EditEventPhotoFragment extends Fragment {
     Button btnPickPhoto;
     ImageView imageViewPhoto;
     EventCreateActivity eventCreateActivity;
-    Uri croppedImageUri;
+    Bitmap bitMapImage = null;
 
     final private int RESULT_LOAD_IMAGE = 0;
     final private int CROP_PHOTO = 1;
@@ -48,7 +48,12 @@ public class EditEventPhotoFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         eventCreateActivity = (EventCreateActivity) getActivity();
+        eventCreateActivity.editEventPhotoFragment = this;
         findAllViewsById();
+    }
+
+    public Bitmap getEventBitMapImage() {
+        return bitMapImage;
     }
 
     private void findAllViewsById() {
@@ -71,11 +76,12 @@ public class EditEventPhotoFragment extends Fragment {
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == Activity.RESULT_OK && null != data) {
             Log.d("String", "Recieved something from gallery");
             Uri selectedImage = data.getData();
-            
+
             try {
-                imageViewPhoto.setImageBitmap(BitmapFactory.decodeStream(
-                        eventCreateActivity.getContentResolver().openInputStream(selectedImage)));
+                bitMapImage = BitmapFactory.decodeStream(eventCreateActivity.getContentResolver().openInputStream(selectedImage));
+                imageViewPhoto.setImageBitmap(bitMapImage);
             } catch (FileNotFoundException e) {
+                bitMapImage = null;
                 e.printStackTrace();
             }
         }

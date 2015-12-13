@@ -36,12 +36,16 @@
 
         <TextView
             android:id="@+id/drawer_name_header"
-            android:text="Welcome User!"
+            android:text="Christin Carter"
+            android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize="@dimen/user_header_text_size"
             android:background="@color/cardinal"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:paddingStart="@dimen/listview_seperataion"
+            android:paddingEnd="@dimen/listview_seperataion"
+            android:paddingBottom="@dimen/listview_seperataion"
             android:gravity="bottom"/>
 
         <ListView

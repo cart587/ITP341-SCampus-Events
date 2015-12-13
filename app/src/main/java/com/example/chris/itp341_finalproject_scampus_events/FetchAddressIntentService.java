@@ -21,6 +21,7 @@ import java.util.Locale;
 public class FetchAddressIntentService extends IntentService {
     protected ResultReceiver mReceiver;
     protected Location location;
+    protected Address address;
 
     //CONSTANT STRING
     public static final int SUCCESS_RESULT = 0;
@@ -35,6 +36,8 @@ public class FetchAddressIntentService extends IntentService {
 
     public static final String FIND_LOCATION_DATA_EXTRA = PACKAGE_NAME +
             ".FIND_LOCATION_DATA_EXTRA";
+
+    public static final String EVENT_ADDRESS = PACKAGE_NAME + ".EVENT_ADDRESS";
     //DEBUGGING TAG
     private final String TAG = "FetchAddressService";
 
@@ -45,7 +48,8 @@ public class FetchAddressIntentService extends IntentService {
     private void deliverResultToReceiver(int resultCode, String message) {
         Bundle bundle = new Bundle();
         bundle.putString(RESULT_DATA_KEY, message);
-        bundle.putParcelable(FIND_LOCATION_DATA_EXTRA,location);
+        bundle.putParcelable(FIND_LOCATION_DATA_EXTRA, location);
+        bundle.putParcelable(EVENT_ADDRESS, address);
         mReceiver.send(resultCode, bundle);
     }
 
@@ -101,7 +105,7 @@ public class FetchAddressIntentService extends IntentService {
             }
             deliverResultToReceiver(FAILURE_RESULT, errorMessage);
         } else {
-            Address address = addresses.get(0);
+            address = addresses.get(0);
             ArrayList<String> addressFragments = new ArrayList<String>();
             location.setLatitude(address.getLatitude());
             location.setLongitude(address.getLongitude());
