@@ -13,6 +13,7 @@ public class EventCreatorPageAdapter extends FragmentPagerAdapter {
     CharSequence titles[];
     public int NUM_TABS = 3;
     EditDetailFragment editDetailFragment = null;
+    EditEventPhotoFragment editEventPhotoFragment = null;
     EditLocationFragment editLocationFragment = null;
 
     public EventCreatorPageAdapter(FragmentManager fm, CharSequence[] titles) {
@@ -40,11 +41,11 @@ public class EventCreatorPageAdapter extends FragmentPagerAdapter {
                     editLocationFragment = new EditLocationFragment();
                 }
                 return editLocationFragment;
-            case 3:
-                if(editDetailFragment == null){
-                    editDetailFragment = new EditDetailFragment();
+            case 2:
+                if (editEventPhotoFragment == null) {
+                    editEventPhotoFragment = new EditEventPhotoFragment();
                 }
-                return editDetailFragment;
+                return editEventPhotoFragment;
 
         }
         //Should never get here

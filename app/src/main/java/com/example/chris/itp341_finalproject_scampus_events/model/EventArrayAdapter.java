@@ -2,10 +2,12 @@ package com.example.chris.itp341_finalproject_scampus_events.model;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,6 +22,7 @@ public class EventArrayAdapter extends ArrayAdapter<CampusEvent> {
     TextView eventTitleTextView;
     TextView eventLocationTextView;
     TextView eventTimeTextView;
+    ImageView eventImage;
     LinearLayout eventTextBackground;
     Context context;
 
@@ -43,6 +46,7 @@ public class EventArrayAdapter extends ArrayAdapter<CampusEvent> {
         eventLocationTextView = (TextView) convertView.findViewById(R.id.event_location);
         eventTimeTextView = (TextView) convertView.findViewById(R.id.event_time);
         eventTextBackground = (LinearLayout) convertView.findViewById(R.id.eventTextBackground);
+        eventImage = (ImageView) convertView.findViewById(R.id.event_image);
 
         eventTitleTextView.setText(campusEvent.getEventTitle());
         eventLocationTextView.setText(campusEvent.getEventLocation());
