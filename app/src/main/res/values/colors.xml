@@ -6,4 +6,8 @@
     <color name="white">#FFFFFF</color>
     <color name="events_background">#E0E0E0</color>
     <color name="event_description_text_color">#606060</color>
+
+    <color name="ColorPrimary">#e62117</color>
+    <color name="ColorPrimaryDark">#c31c13</color>
+    <color name="tabsScrollColor">#8a140e</color>
 </resources>

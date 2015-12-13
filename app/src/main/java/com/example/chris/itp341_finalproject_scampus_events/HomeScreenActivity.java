@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.chris.itp341_finalproject_scampus_events.model.CampusEventSingleton;
 import com.example.chris.itp341_finalproject_scampus_events.model.EventArrayAdapter;
@@ -33,8 +34,9 @@ public class HomeScreenActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private String mActivityTitle;
-
+;
     //OTHER VARIABLES
+    private static final int EVENT_CREATE_ACTIVITY = 0;
     public static final String TAG = "HomeScreenActivity";
 
     @Override
@@ -75,14 +77,29 @@ public class HomeScreenActivity extends AppCompatActivity {
     }
 
     private void addDrawerItems() {
-
-        SliderCategory category = new SliderCategory("Create Event",getDrawable(R.drawable.ic_add_black_18dp));
         ArrayList<SliderCategory> arrCategories = new ArrayList<>();
+        SliderCategory category = new SliderCategory("Create Event",getDrawable(R.drawable.ic_add_black_18dp));
 
         arrCategories.add(category);
 
         mAdapter = new SliderArrayAdapter(this, arrCategories);
         mDrawerList.setAdapter(mAdapter);
+
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TextView textCategory = (TextView) view.findViewById(R.id.textViewSlider);
+
+                switch (textCategory.getText().toString()){
+                    case "Create Event":
+                        Intent intentCreateEvent = new Intent(getApplicationContext(), EventCreateActivity.class);
+                        startActivityForResult(intentCreateEvent,EVENT_CREATE_ACTIVITY);
+                        break;
+                    default:
+                }
+            }
+        });
+
     }
 
     private  void setListenersAndAdapters(){

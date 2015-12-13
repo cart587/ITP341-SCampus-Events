@@ -10,5 +10,16 @@
     <string name="no_address_found">An address could not be determined</string>
     <string name="address_found">Address successfully determined</string>
     <string name="sample_description">SCampus Events serves as a central hub for students, faculty, staff, and anyone involved with the USC community who want to know what events are occurring on campus. Events that are not entirely on campus, but still are for USC affiliates, can also be viewed on the app. SCampus Events lets people who want to connect with other people they might not normally meet by connecting people from all corners of the USC campus.</string>
+    <string name="event_title">Event Title</string>
+    <string name="event_edit_title_hint">Enter Event Title Here</string>
+    <string name="event_description">Event Description</string>
+    <string name="event_edit_description_hint">Enter description here</string>
+    <string name="current_location">Current Location</string>
+    <string name="location_query_hint">Enter an address</string>
 
+    <string-array name="tab_names">
+        <item>Details</item>
+        <item>Location</item>
+        <item>Photo</item>
+    </string-array>
 </resources>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/activity_vertical_margin"
+        android:paddingEnd="@dimen/activity_vertical_margin"
+        android:paddingTop="@dimen/activity_horizontal_margin"
+        android:orientation="vertical">
+
+        <!--Event Title Info-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/event_title" />
+
+        <EditText
+            android:id="@+id/event_edit_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/event_edit_title_hint"
+            android:padding="@dimen/events_padding"/>
+
+
+        <!--Start Date and Time-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:id="@+id/image_view_start_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_event_black_12dp" />
+
+            <TextView
+                android:id="@+id/text_view_start_date"
+                android:layout_width="wrap_content"
+                android:minWidth="@dimen/min_width"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/icon_text_spacing"
+                android:text="Sat, Dec 12, 2015"
+                android:textSize="@dimen/event_date_time_text_size" />
+
+            <ImageView
+                android:id="@+id/image_view_start_time"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_access_time_black_18dp" />
+
+            <TextView
+                android:id="@+id/text_view_start_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/icon_text_spacing"
+                android:text="7:00 AM"
+                android:textSize="@dimen/event_date_time_text_size" />
+
+        </LinearLayout>
+
+        <!--End Date and Time-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/date_time_spacing"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:id="@+id/image_view_end_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_event_black_12dp" />
+
+            <TextView
+                android:id="@+id/text_view_end_date"
+                android:layout_width="wrap_content"
+                android:minWidth="@dimen/min_width"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/icon_text_spacing"
+                android:text="Sat, Dec 12, 2015"
+                android:textSize="@dimen/event_date_time_text_size" />
+
+            <ImageView
+                android:id="@+id/image_view_end_time"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_access_time_black_18dp" />
+
+            <TextView
+                android:id="@+id/text_view_end_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/icon_text_spacing"
+                android:text="7:00 AM"
+                android:textSize="@dimen/event_date_time_text_size" />
+
+        </LinearLayout>
+
+        <!--Event Description Info-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/event_description" />
+
+        <EditText
+            android:id="@+id/event_edit_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/event_edit_description_hint"
+            android:inputType="textMultiLine"
+            android:maxLines="6"
+            android:padding="@dimen/events_padding" />
+
+
+    </LinearLayout>
+</ScrollView>

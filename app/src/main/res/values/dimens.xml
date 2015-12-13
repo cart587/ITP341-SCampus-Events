@@ -6,4 +6,10 @@
     <dimen name="listview_seperataion">8dp</dimen>
     <dimen name="event_title_text_size_in_detail">28sp</dimen>
     <dimen name="address_text_size">18sp</dimen>
+    <dimen name="event_date_time_text_size">18sp</dimen>
+    <dimen name="icon_text_spacing">8dp</dimen>
+    <dimen name="date_time_spacing">24dp</dimen>
+    <dimen name="user_header_text_size">20sp</dimen>
+    <dimen name="category_padding">12dp</dimen>
+    <dimen name="min_width">180dp</dimen>
 </resources>
