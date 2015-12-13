@@ -69,14 +69,15 @@ public class EventDetailActivity extends AppCompatActivity implements GoogleApiC
 
         textViewAddress = (TextView) findViewById(R.id.address_line_event_detail);
         textViewDate = (TextView) findViewById(R.id.date_event_detail);
+
+        textViewDate.setVisibility(View.VISIBLE);
+        textViewDate.setText("Today at 7:00PM");
     }
 
     private void updateGUI(){
         textViewAddress.setVisibility(View.VISIBLE);
         textViewAddress.setText(mAddressOutput);
 
-        textViewDate.setVisibility(View.VISIBLE);
-        textViewDate.setText("Today at 7:00PM");
     }
 
     protected void startIntentService() {

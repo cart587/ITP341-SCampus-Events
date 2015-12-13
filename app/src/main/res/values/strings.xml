@@ -15,7 +15,7 @@
     <string name="event_description">Event Description</string>
     <string name="event_edit_description_hint">Enter description here</string>
     <string name="current_location">Current Location</string>
-    <string name="location_query_hint">Enter an address</string>
+    <string name="location_query_hint">Use current location/Enter an address</string>
 
     <string-array name="tab_names">
         <item>Details</item>
