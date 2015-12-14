@@ -1,24 +1,18 @@
 package com.example.chris.itp341_finalproject_scampus_events;
 
-import android.app.ActionBar;
-import android.content.Intent;
-import android.graphics.Bitmap;
+import android.location.Location;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.chris.itp341_finalproject_scampus_events.date_time_fragments.DatePickerFragment;
-import com.example.chris.itp341_finalproject_scampus_events.date_time_fragments.TimePickerFragment;
 import com.example.chris.itp341_finalproject_scampus_events.event_create_fragments.EditDetailFragment;
 import com.example.chris.itp341_finalproject_scampus_events.event_create_fragments.EditEventPhotoFragment;
 import com.example.chris.itp341_finalproject_scampus_events.event_create_fragments.EditLocationFragment;
@@ -29,7 +23,6 @@ import com.example.chris.itp341_finalproject_scampus_events.model.CampusEventSin
 
 import java.text.DateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
@@ -45,6 +38,8 @@ public class EventCreateActivity extends AppCompatActivity {
 
     public Calendar startDate = null;
     public Calendar endDate = null;
+    public Location eventLocation;
+    public String textLocation;
 
     public EditDetailFragment editDetailFragment;
     public EditLocationFragment editLocationFragment;
@@ -76,6 +71,7 @@ public class EventCreateActivity extends AppCompatActivity {
         saveEventLocation(event);
         saveEventPhoto(event);
 
+        Log.d("EventString", event.getTextLocation());
         CampusEventSingleton.getInstance(this).addCampusEvent(event);
 
         setResult(RESULT_OK);
@@ -91,8 +87,10 @@ public class EventCreateActivity extends AppCompatActivity {
         }
     }
 
-    private void saveEventLocation(CampusEvent event) {
-        event.setEventAddress(editLocationFragment.getEventAddress());
+    public void saveEventLocation(CampusEvent event) {
+        event.setLocation(eventLocation);
+        event.setTextLocation(textLocation);
+        Log.d("EventCreateActivity", textLocation);
     }
 
     private void saveEventPhoto(CampusEvent event) {

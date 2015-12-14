@@ -1,7 +1,7 @@
 package com.example.chris.itp341_finalproject_scampus_events.model;
 
 import android.content.Context;
-import android.location.Address;
+import android.location.Location;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +22,7 @@ import java.util.Locale;
 /**
  * Created by Chris on 12/7/2015.
  */
-public class EventArrayAdapter extends ArrayAdapter<CampusEvent> {
+public class EventArrayAdapter extends  ArrayAdapter<CampusEvent>{
     TextView eventTitleTextView;
     TextView eventLocationTextView;
     TextView eventTimeTextView;
@@ -53,16 +53,15 @@ public class EventArrayAdapter extends ArrayAdapter<CampusEvent> {
         eventImage = (ImageView) convertView.findViewById(R.id.event_image);
 
 
-        eventTitleTextView.setText(campusEvent.getEventTitle());
+        eventTitleTextView.setText(campusEvent.getEventTitle().toUpperCase());
 
 
         if (campusEvent.getBitmapImage() != null) {
-            eventImage.setScaleType(ImageView.ScaleType.FIT_XY);
+            eventImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
             eventImage.setImageBitmap(campusEvent.getBitmapImage());
         }
 
-        Address address = campusEvent.getEventAddress();
-        eventLocationTextView.setText(address.getAddressLine(0).trim());
+        eventLocationTextView.setText(campusEvent.getTextLocation().substring(0,campusEvent.getTextLocation().indexOf('\n')));
         if (campusEvent.getStartDate().getTime().after(Calendar.getInstance().getTime())) {
             //Event is not today
             SimpleDateFormat sdf = new SimpleDateFormat("MMM d", Locale.getDefault());

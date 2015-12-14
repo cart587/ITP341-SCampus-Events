@@ -2,7 +2,6 @@ package com.example.chris.itp341_finalproject_scampus_events.event_create_fragme
 
 import android.content.Intent;
 import android.content.IntentSender;
-import android.location.Address;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.chris.itp341_finalproject_scampus_events.EventCreateActivity;
@@ -30,8 +28,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.ArrayList;
-
 /**
  * Created by Chris on 12/12/2015.
  */
@@ -40,7 +36,6 @@ public class EditLocationFragment extends Fragment implements GoogleApiClient.Co
     //VARIABLES FOR CURRENT LOCATION
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
-    Location eventLocation;
     LatLng mLatLng;
     boolean mResolvingError = false;
 
@@ -50,7 +45,6 @@ public class EditLocationFragment extends Fragment implements GoogleApiClient.Co
 
     //VARIABLES FOR MAP
     MapFragment mapFragment;
-    Address eventAddress;
     EditText editTextAddressQuery;
     ImageButton imageButtonSearch;
     String addressQuery = null;
@@ -77,10 +71,6 @@ public class EditLocationFragment extends Fragment implements GoogleApiClient.Co
         buildGoogleApiClient();
     }
 
-    public Address getEventAddress() {
-        return eventAddress;
-    }
-
     private void findAllViewsById(){
         mapFragment = (MapFragment) activity.getFragmentManager().findFragmentById(R.id.editMap);
         editTextAddressQuery = (EditText) activity.findViewById(R.id.edit_text_address_search);
@@ -99,7 +89,7 @@ public class EditLocationFragment extends Fragment implements GoogleApiClient.Co
     @Override
     public void onMapReady(GoogleMap map) {
 
-        mLatLng = new LatLng(eventLocation.getLatitude(), eventLocation.getLongitude());
+        mLatLng = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
         Log.d("String","Lat: "+mLatLng.latitude+", Lng: "+mLatLng.longitude);
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(mLatLng, MAP_ZOOM_LEVEL);
 
@@ -126,17 +116,19 @@ public class EditLocationFragment extends Fragment implements GoogleApiClient.Co
             // Show a toast message if an address was found.
             if (resultCode == FetchAddressIntentService.SUCCESS_RESULT) {
 
-                eventAddress = resultData.getParcelable(FetchAddressIntentService.EVENT_ADDRESS);
                 Location tempLocation = resultData.getParcelable(FetchAddressIntentService.FIND_LOCATION_DATA_EXTRA);
+
 
                 if(tempLocation != null) {
                     Log.d("String","FOund bundled location");
-                    eventLocation = tempLocation;
+                    mLastLocation = tempLocation;
                 }
                 else {
                     Log.d("String","Didnt find bundled Location");
-                    eventLocation = mLastLocation;
+
                 }
+                activity.eventLocation = mLastLocation;
+                activity.textLocation = mAddressOutput;
 
                 Log.d("String","Final Address: "+ mAddressOutput);
                 loadMapLocation();

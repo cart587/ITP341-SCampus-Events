@@ -6,6 +6,13 @@
     <style name="SlidingTabAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/ColorPrimary</item>
         <item name="colorPrimaryDark">@color/ColorPrimaryDark</item>
-        <item name="windowActionBar">false</item>
+        <item name="android:colorAccent">@color/gold</item>
+
+    </style>
+
+    <style name="mainTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/ColorPrimary</item>
+        <item name="colorPrimaryDark">@color/ColorPrimaryDark</item>
+        <item name="android:colorAccent">@color/gold</item>
     </style>
 </resources>

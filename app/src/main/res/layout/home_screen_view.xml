@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <!--Main Window-->
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -14,47 +15,72 @@
         android:paddingEnd="@dimen/events_padding"
         android:paddingStart="@dimen/events_padding">
 
-        <ListView
-            android:id="@+id/listview_events"
-            android:layout_marginTop="@dimen/events_padding"
-            android:layout_marginBottom="@dimen/events_padding"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="@dimen/listview_seperataion">
+            android:layout_height="match_parent">
 
-        </ListView>
+            <ListView
+                android:id="@+id/listview_events"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/events_padding"
+                android:layout_marginTop="@dimen/events_padding"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="@dimen/listview_seperataion">
+
+            </ListView>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+
+
+
     </LinearLayout>
+
 
     <!--Navigation Drawer-->
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#ffeeeeee">
+        android:background="#ffeeeeee"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/drawer_name_header"
-            android:text="Christin Carter"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:textSize="@dimen/user_header_text_size"
-            android:background="@color/cardinal"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="240dp"
             android:layout_height="200dp"
-            android:paddingStart="@dimen/listview_seperataion"
-            android:paddingEnd="@dimen/listview_seperataion"
-            android:paddingBottom="@dimen/listview_seperataion"
-            android:gravity="bottom"/>
+            android:layout_gravity="start"
+            android:background="@color/cardinal"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_account_circle_black_48dp" />
+
+            <TextView
+                android:id="@+id/drawer_name_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="bottom"
+                android:paddingBottom="@dimen/listview_seperataion"
+                android:paddingEnd="@dimen/listview_seperataion"
+                android:paddingStart="@dimen/listview_seperataion"
+                android:text="Welcome User"
+                android:textColor="@color/white"
+                android:textSize="@dimen/user_header_text_size"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <ListView
             android:id="@+id/left_drawer"
-            android:padding="@dimen/category_padding"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:choiceMode="singleChoice"
-            android:dividerHeight="0dp" />
+            android:dividerHeight="0dp"
+            android:padding="@dimen/category_padding" />
     </LinearLayout>
 
 

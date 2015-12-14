@@ -50,6 +50,8 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void done(ParseUser user, ParseException e) {
                             if (e == null) {
+                                email.setText("");
+                                password.setText("");
                                 Intent intent = new Intent(getApplicationContext(), HomeScreenActivity.class);
                                 startActivity(intent);
                             } else {
@@ -64,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-                    Intent intent = new Intent(getApplicationContext(), Signup.class);
+                    Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
                     startActivity(intent);
                 }
             });

@@ -1,7 +1,7 @@
 package com.example.chris.itp341_finalproject_scampus_events.model;
 
 import android.graphics.Bitmap;
-import android.location.Address;
+import android.location.Location;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -10,22 +10,37 @@ import java.util.Calendar;
  * Created by Chris on 12/7/2015.
  */
 public class CampusEvent implements Serializable {
+    private String uniqueId;
     private String eventTitle;
     private String eventDescription;
-    private Address eventAddress;
+
+    private String textLocation;
+    private Location location;
 
     private Calendar startDate = null;
     private Calendar endDate = null;
 
     private Bitmap bitmapImage;
 
-    public CampusEvent(String eventTitle, Address eventAddress) {
-        this.eventTitle = eventTitle;
-        this.eventAddress = eventAddress;
-    }
 
     public CampusEvent() {
+        bitmapImage = null;
+    }
 
+    public String getUniqueId() {
+        return uniqueId;
+    }
+
+    public String getTextLocation() {
+        return textLocation;
+    }
+
+    public void setTextLocation(String textLocation) {
+        this.textLocation = textLocation;
+    }
+
+    public void setUniqueId(String uniqueId) {
+        this.uniqueId = uniqueId;
     }
 
     public Bitmap getBitmapImage() {
@@ -68,11 +83,11 @@ public class CampusEvent implements Serializable {
         this.eventTitle = eventTitle;
     }
 
-    public Address getEventAddress() {
-        return eventAddress;
+    public Location getLocation() {
+        return location;
     }
 
-    public void setEventAddress(Address eventAddress) {
-        this.eventAddress = eventAddress;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 }

@@ -15,4 +15,5 @@
     <dimen name="category_padding">12dp</dimen>
     <dimen name="min_width">180dp</dimen>
     <dimen name="button_height">35dp</dimen>
+    <dimen name="login_title">32sp</dimen>
 </resources>

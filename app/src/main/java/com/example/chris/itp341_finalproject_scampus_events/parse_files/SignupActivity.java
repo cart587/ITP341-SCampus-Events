@@ -12,11 +12,12 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
-public class Signup extends AppCompatActivity {
+public class SignupActivity extends AppCompatActivity {
 
     Button signUp;
-    EditText username, email, password;
+    EditText username, email, password, fullname;
 
+    public static final String FULLNAME = "fullname";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +26,7 @@ public class Signup extends AppCompatActivity {
         username = (EditText) findViewById(R.id.username);
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
+        fullname = (EditText) findViewById(R.id.fullname);
 
         signUp = (Button) findViewById(R.id.signup);
 
@@ -36,6 +38,7 @@ public class Signup extends AppCompatActivity {
                 user.setUsername(username.getText().toString());
                 user.setPassword(password.getText().toString());
                 user.setEmail(email.getText().toString());
+                user.put(FULLNAME,fullname.getText().toString());
 
                 user.signUpInBackground(new SignUpCallback() {
                     @Override

@@ -16,5 +16,6 @@
         android:textColor="@android:color/black"
         android:layout_gravity="center_vertical"
         android:layout_width="wrap_content"
+        android:paddingBottom="12dp"
         android:layout_height="wrap_content"/>
 </LinearLayout>
